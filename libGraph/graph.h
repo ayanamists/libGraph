@@ -9,6 +9,7 @@
 #include <vector>
 #include <map>
 #include <queue>
+#include <iostream>
 #include <stdint.h>
 #include <algorithm>
 #include <stdexcept>
@@ -26,6 +27,7 @@ public:
 	virtual uint32_t getNumberOfVertices() = 0;
 	virtual uint32_t getNumberOfEdges() = 0;
 	virtual void clearGraph() = 0;
+	virtual ~Graph() {};
 };
 
 template<class value>
@@ -420,6 +422,7 @@ private:
 		if (this->ifRing()) {
 			throw std::runtime_error("can't sort because of ring!");
 		}
+
 		this->help_vec_32 = std::vector<uint32_t>(this->getNumberOfVertices(), 0);
 		for (uint32_t i = 0; i < this->getNumberOfVertices(); ++i) {
 			auto vec = this->_get_neighbors(i);
